@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
+gem 'therubyracer'
+gem 'less-rails'
 gem 'devise'
 
 # Bundle edge Rails instead:
