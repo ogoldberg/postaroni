@@ -1,6 +1,6 @@
+#{current_user.username}, add a comment
 = form_for([@post, @post.comments.build], remote: true) do |f|
   .field
-    = f.label :content
-    = f.text_area :content
+    = f.text_field :content
   .actions
     = f.submit 'Save'

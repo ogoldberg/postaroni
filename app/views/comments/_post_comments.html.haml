@@ -1,15 +1,16 @@
+
 #comments
   -if @post.comments.count > 0
     %ul
     -@post.comments.each do |comment|
       -@commenter = User.find(comment.user_id)
-      %li
+      %li(id="#{comment.id}")
         #{@commenter.username} says:
         %p
           #{comment.content}
         -if user_signed_in? && current_user.id == comment.user_id
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_comment_path(@post), :class => 'btn'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), post_comment_path(@post, comment), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), post_comment_path(@post, comment),  :remote => true, :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
 
         
   -else

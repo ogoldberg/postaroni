@@ -17,15 +17,12 @@
     -if @post.user_id == current_user.id
       = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn'
       = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
-%h3 
-  Comments
-  %p 
-    Add a comment
-    =render "comments/form"
-  #comments
-    -if @post.comments.count > 0
-      =render @post.comments
+%p
+  -if @post.comments
+    =render :partial => "comments/post_comments"
+  -if user_signed_in?
+    =render :partial => "comments/form"
+  -else
+    = link_to "Log in now", new_user_session_path
+    to make a comment
 
--if user_signed_in?
-  -form_for([@post, @post.comments.build]) do |f|
-    Logged in as #{current_user.username}

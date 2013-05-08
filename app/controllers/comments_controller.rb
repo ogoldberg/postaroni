@@ -46,11 +46,9 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to post_path(@post), notice: 'Comment was successfully created.' }
-        format.json { render json: @comment, status: :created, location: @comment }
+        format.js
       else
-        format.html { render action: "new" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js { render :partial => 'error' }
       end
     end
   end
@@ -74,12 +72,15 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
-    @comment.destroy
-
+    
     respond_to do |format|
-      format.html { redirect_to comments_url }
-      format.json { head :no_content }
+      if @comment.destroy
+        format.js
+      else
+        format.js { render :partial => 'error' }
+      end
     end
   end
 end
