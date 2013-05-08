@@ -1,0 +1,6 @@
+%p
+	-if @comment
+		- @user = User.find(@comment.user_id)
+		= @user.username
+		%strong Comment: #{comment.content}
+		=link_to "Delete", [comment.post, comment], :confirm => 'Are you sure?', :method => :delete
