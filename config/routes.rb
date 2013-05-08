@@ -1,9 +1,9 @@
 Postaroni::Application.routes.draw do
   devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
 
-  resources :comments
-
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
 
 
   # The priority is based upon order of creation:
