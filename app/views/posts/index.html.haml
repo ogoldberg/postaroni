@@ -3,18 +3,13 @@
   %h1 Postaroni
   %h3 Check out the latest posts!
 %table.table.table-striped
-  %thead
-    %tr
-      %th= model_class.human_attribute_name(:title)
-      %th= model_class.human_attribute_name(:user_id)
-      %th Created
   %tbody
     - @posts.each do |post|
     - @user = User.find(post.user_id)
       %tr
         %td= link_to post.title, post_path(post)
-        %td= @user.username
-        %td= time_ago_in_words(post.created_at)
+        %td= "submitted #{time_ago_in_words(post.created_at)} ago by #{@user.username}"
+        
         %td
           -if user_signed_in?
             -if post.user_id == current_user.id
