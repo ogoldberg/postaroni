@@ -4,6 +4,8 @@
   %h3 Check out the latest posts!
 %table.table.table-striped
   %tbody
+    - @posts = Post.order("updated_at DESC").paginate(:page => params[:page], :per_page => 10)
+    - will_paginate @posts
     - @posts.each do |post|
     - @user = User.find(post.user_id)
       %tr
@@ -17,3 +19,6 @@
               = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(post), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 -if user_signed_in?
   =link_to t('.new', :default => t("helpers.links.new")), new_post_path, :class => 'btn btn-primary'
+%p
+  .apple_pagination
+    = will_paginate @posts

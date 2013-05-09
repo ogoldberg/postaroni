@@ -1,5 +1,7 @@
 
 #comments
+  #comments_count
+    Number of comments on this post: #{@post.comments.count} 
   -if @post.comments.count > 0
     %ul
     -@post.comments.each do |comment|
