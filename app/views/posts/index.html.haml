@@ -9,7 +9,7 @@
     - @posts.each do |post|
     - @user = User.find(post.user_id)
       %tr
-        %td= link_to post.title, post_path(post)
+        %td= link_to truncate(post.title, length: 70), post_path(post)
         %td= "submitted #{time_ago_in_words(post.created_at)} ago by #{@user.username}"
         
         %td
