@@ -1,4 +1,6 @@
 Postaroni::Application.routes.draw do
+  mount RedactorRails::Engine => '/redactor_rails'
+
   devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
 
   resources :posts do

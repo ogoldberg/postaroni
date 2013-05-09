@@ -8,6 +8,9 @@ gem 'less-rails'
 gem 'devise'
 gem 'friendly_id'
 gem 'newrelic_rpm'
+gem 'redactor-rails'
+gem "carrierwave"
+gem "mini_magick"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
